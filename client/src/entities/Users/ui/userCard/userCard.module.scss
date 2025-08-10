@@ -1,0 +1,23 @@
+.UserCard{
+    display: flex;
+    margin: 15px 0px;
+    align-items: center;
+    &__image{
+        width: 100px;
+        height: 100px;
+        border-radius: 200px;
+        object-fit: cover;
+    }
+    &__info{
+        margin-left: 20px;
+    }
+    &__link{
+        text-decoration: none;
+        color: black;
+        font-size: 25px;
+        font-weight: 600;
+    }
+    &__desc{
+
+    }
+}

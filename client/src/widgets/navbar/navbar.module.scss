@@ -1,0 +1,22 @@
+.Navbar{
+    &__logo{
+
+    }
+    &__items{
+
+    }
+    &__item{
+        margin: 20px 0px;
+        list-style: none;
+    }
+    &__link{
+        display: flex;
+        align-items: center;
+        color: #000;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    &__icon{
+        margin-right: 10px;
+    }
+}

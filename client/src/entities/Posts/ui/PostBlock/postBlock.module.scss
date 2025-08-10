@@ -1,0 +1,42 @@
+.PostBlock{
+    width: 100%;
+    background-color: #faefef;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0px;
+    border: 1px solid #d5d5d5;
+    &__autor{
+        display: flex;
+    }
+    &__avatar{
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 200px;
+    }
+    &__name{
+        display: flex;
+        margin-left: 10px;
+        align-items: center;
+    }
+    &__title{
+        font-size: 18px;
+    }
+    &__id{
+        font-size: 18px;
+        color: #5B7083;
+        margin-left: 5px;
+        font-weight: 600;
+    }
+    &__content{
+        margin: 10px 0px;
+        white-space: pre;
+    }
+    &__textSmall{
+        margin: 10px 0px;
+        font-size: 22px;
+    }
+    &__contentTitle{
+        margin: 5px 0px;
+    }
+}

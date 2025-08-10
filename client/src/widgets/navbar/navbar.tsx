@@ -36,7 +36,7 @@ const Navbar: FC<IProps> = ({ isAuth }) => {
                 </NavLink>
             </li> : undefined}
         </ul>
-    </div>
+    </div >
 }
 
 

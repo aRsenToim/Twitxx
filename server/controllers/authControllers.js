@@ -198,6 +198,8 @@ class AuthController {
         try {
             const id = req.user.id
             const id_name = req.body.id_name
+            console.log(id, id_name);
+            
             const userUpdate = await prisma.user.update({
                 where: {
                     id

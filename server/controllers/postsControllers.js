@@ -41,12 +41,48 @@ class PostsControllers {
                     userId,
                     authorName: user.name,
                     authorAvatar: user.avatar,
-                    authorIdName: user.id_name
+                    authorIdName: user.id_name,
+                    toFix: false
                 }
             })
             res.json(post)
         } catch (error) {
             res.send({ message: error.message })
+        }
+    }
+    async changePost(req, res) {
+        try {
+            const { idPost, fix } = req.body
+
+            const post = await prisma.post.findUnique({
+                where: {
+                    id: idPost
+                }
+            })
+            const updatePost = await prisma.post.update({
+                where: {
+                    id: idPost
+                },
+                data: {
+                    toFix: fix != undefined ? Boolean(fix) : post.toFix
+                }
+            })
+            res.json(updatePost)
+        } catch (error) {
+            res.send('server error')
+        }
+    }
+    async deletePost(req, res) {
+        try {
+            const idPost = req.query.idPost
+            await prisma.post.delete({
+                where: {
+                    id: idPost
+                }
+            })
+            res.send('good')
+        } catch (error) {
+            res.send('server error')
         }
     }
 }

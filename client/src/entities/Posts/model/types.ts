@@ -7,6 +7,7 @@ export interface IPost {
     content: string
     date: Date
     userId: string
+    toFix: boolean
     authorName: string
     authorAvatar: string
     authorIdName: string

@@ -44,6 +44,13 @@ const AuthApi = {
     async getIdNameStatus(idName: string) {
         const data = await instance.get<IResponseGetIdName>(`/auth/profileIdName?idName=${idName}`)
         return data.data
+    },
+    async changeIdName(idName: string) {
+        const data = await instance.patch<IProfile>('/auth/profileIdName',
+            { id_name: idName },
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        )
+        return data.data
     }
 }
 

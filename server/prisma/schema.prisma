@@ -16,13 +16,14 @@ model User {
   avatar     String
   desc       String
   background String
-  
-  Post       Post[]
+
+  Post Post[]
 }
 
 model Post {
   id           String   @id @default(uuid())
   Title        String
+  toFix        Boolean
   content      String
   date         DateTime @default(now())
   authorName   String

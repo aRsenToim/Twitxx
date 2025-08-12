@@ -28,7 +28,7 @@ const User = () => {
         {User && <ProfileHeader isProfile={false} 
         setDesc={() => {}} logout={() => {}} editProfileWindow={() => {}}         
         name={User?.name} avatar={User.avatar} background={User.background} desc={User.desc} id={User.id} />}
-        {postsUsers?.map(post => <PostBlock key={post.id} title={post.Title}
+        {postsUsers?.map(post => <PostBlock isProfile={false} key={post.id} title={post.Title}
             content={post.content} authorAvatar={post.authorAvatar} authorIdName={post.authorIdName} authorName={post.authorName}
             date={post.date}
         />)}

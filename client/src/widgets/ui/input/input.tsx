@@ -9,12 +9,15 @@ interface IProps {
     placeholder: string
     type?: string
     label?: string
+    onKeyDown?: () => void
 }
 
-const Input: FC<IProps> = ({ value, onChange, placeholder, type, label }) => {
+const Input: FC<IProps> = ({ value, onChange, placeholder, onKeyDown, type, label }) => {
     return <form className={s.Input}>
         {label && <label className={s.Input__label}>{label}</label>}
-        <input className={s.Input__input} type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
+        <input className={s.Input__input} type={type} placeholder={placeholder} value={value} 
+        onKeyUp={onKeyDown}
+        onChange={(e) => onChange(e.currentTarget.value)} />
     </form>
 
 }

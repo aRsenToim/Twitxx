@@ -1,4 +1,4 @@
-import { createPost, getPosts, getUsersPosts } from "./actions/postsAction"
+import { changePost, createPost, deletePost, getPosts, getUsersPosts } from "./actions/postsAction"
 import postsSlice from "./model/postsSlice"
 import CreatePost from "./ui/CreatePost/CreatePost"
 import PostBlock from "./ui/PostBlock/postBlock"
@@ -11,5 +11,7 @@ export {
     postsSlice,
     getPosts,
     createPost,
-    getUsersPosts
+    getUsersPosts,
+    changePost,
+    deletePost
 }

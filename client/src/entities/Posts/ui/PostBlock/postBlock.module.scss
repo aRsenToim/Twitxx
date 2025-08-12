@@ -1,42 +1,100 @@
-.PostBlock{
+.PostBlock {
     width: 100%;
     background-color: #faefef;
     border-radius: 10px;
     padding: 15px;
     margin: 15px 0px;
     border: 1px solid #d5d5d5;
-    &__autor{
+
+    &__autor {
         display: flex;
     }
-    &__avatar{
+
+    &__avatar {
         width: 48px;
         height: 48px;
         object-fit: cover;
         border-radius: 200px;
     }
-    &__name{
+
+    &__fix {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        margin-left: 2px;
+    }
+
+    &__header {
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__name {
+        display: flex;
+
         margin-left: 10px;
         align-items: center;
     }
-    &__title{
+
+    &__title {
         font-size: 18px;
     }
-    &__id{
+
+    &__id {
         font-size: 18px;
         color: #5B7083;
         margin-left: 5px;
         font-weight: 600;
     }
-    &__content{
+
+    &__content {
         margin: 10px 0px;
         white-space: pre;
     }
-    &__textSmall{
+
+    &__textSmall {
         margin: 10px 0px;
         font-size: 22px;
     }
-    &__contentTitle{
+
+    &__contentTitle {
         margin: 5px 0px;
+    }
+}
+
+.SettingsPostBlock {
+    position: relative;
+
+    &__btn {
+        cursor: pointer;
+    }
+
+    &__items {
+        position: absolute;
+        right: 0px;
+        background-color: #ccc;
+        padding: 4px;
+        border-radius: 10px;
+    }
+
+    &__item {
+        background-color: #ccc;
+        list-style: none;
+        margin: 10px 0px;
+        cursor: pointer;
+        width: 150px;
+        align-items: end;
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        span {
+            margin-left: 5px;
+        }
     }
 }

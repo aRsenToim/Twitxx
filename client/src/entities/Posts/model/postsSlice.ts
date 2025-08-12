@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { IPost } from "./types";
 
 interface IinitialState {
@@ -17,14 +17,25 @@ const postsSlice = createSlice({
     name: "AuthSlice",
     initialState,
     reducers: {
-        setPosts(state, action) {
+        setPosts(state, action: PayloadAction<IPost[]>) {
             state.posts = action.payload.reverse()
         },
         setError(state, action) {
             state.error = action.payload
         },
-        setPostsUser(state, action) {
-            state.postsUsers = action.payload.reverse()
+        setPostsUser(state, action: PayloadAction<IPost[]>) {
+            action.payload = action.payload.reverse()
+            let noFixed: IPost[] = []
+            let fixed: IPost[] = []
+            action.payload.forEach(item => {
+                if(item.toFix){
+                    fixed.push(item)
+                }else{
+                    noFixed.push(item)
+                }
+            })
+            
+            state.postsUsers = [...fixed, ...noFixed]
         }
     }
 })

@@ -58,3 +58,14 @@ export const changePicture = (userId: string, avatar: File, background: File) =>
         })
     }
 }
+
+
+export const changeIdNameFetch = (idName: string, userId: string) => {
+    return (dispatch: AppDispatch) => {
+        AuthApi.changeIdName(idName).then((data) => {
+            dispatch(setProfile(data))
+            dispatch(getPosts())
+            dispatch(getUsersPosts(userId))
+        })
+    }
+}

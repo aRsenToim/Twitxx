@@ -2,7 +2,7 @@ import { useEffect, type FC } from "react";
 import { useAppDispatch, useAppSelector } from "../App/AppStore";
 import { AuthorizedProfile } from "../shared/hoc/authorizedProfile";
 import { ProfileHeader, ProfileID } from "../entities/profile";
-import { createPost, CreatePost, getUsersPosts, PostBlock } from "../entities/Posts";
+import { changePost, createPost, CreatePost, deletePost, getUsersPosts, PostBlock } from "../entities/Posts";
 import { changeProfile, LogOut } from "../entities/Auth";
 import { setWindowEditProfile } from "../entities/Window";
 
@@ -34,7 +34,13 @@ const Profile: FC = () => {
                 dispatch(createPost(title, content, profile?.id))
             }} /> : undefined}
             <h1>Your twitxxers: </h1>
-            {postsUsers?.map(post => <PostBlock key={post.id} title={post.Title}
+            {postsUsers?.map(post => <PostBlock isProfile={true} pinPost={() => {
+                dispatch(changePost(profile?.id ?? "", post.id, !post.toFix))
+            }} 
+            deletePost={() => {
+                dispatch(deletePost(profile?.id ?? "", post.id))
+            }}
+            toFix={post.toFix} key={post.id} title={post.Title}
                 content={post.content} authorAvatar={post.authorAvatar} authorIdName={post.authorIdName} authorName={post.authorName}
                 date={post.date}
             />)}

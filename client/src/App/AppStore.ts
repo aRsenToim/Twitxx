@@ -4,13 +4,15 @@ import { useDispatch } from 'react-redux'
 import { AuthSlice } from '../entities/Auth'
 import { postsSlice } from '../entities/Posts'
 import { usersSlice } from '../entities/Users'
+import { WindowSlice } from '../entities/Window'
 
 
 
 const rootReducers = combineReducers({
     AuthSlice,
     postsSlice,
-    usersSlice
+    usersSlice,
+    WindowSlice
 })
 
 

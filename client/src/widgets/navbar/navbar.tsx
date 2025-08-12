@@ -29,12 +29,12 @@ const Navbar: FC<IProps> = ({ isAuth }) => {
                     Users
                 </NavLink>
             </li>
-            {isAuth ? <li className={s.Navbar__item}>
-                <NavLink to={'/change'} className={s.Navbar__link}>
-                    <img className={s.Navbar__icon} src="/images/icons/settings.svg" alt="" />
-                    Settings
+            <li className={s.Navbar__item}>
+                <NavLink to={'/news'} className={s.Navbar__link}>
+                    <img className={s.Navbar__icon} src="/images/icons/news.svg" alt="" />
+                    News
                 </NavLink>
-            </li> : undefined}
+            </li>
         </ul>
     </div >
 }

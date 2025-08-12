@@ -4,8 +4,8 @@ import Profile from "../../Pages/Profile"
 import Users from "../../Pages/Users"
 import Regist from "../../Pages/Regist"
 import Login from "../../Pages/login"
-import Change from "../../Pages/Change"
 import User from "../../Pages/User"
+import News from "../../Pages/News"
 
 
 
@@ -23,7 +23,8 @@ enum RoutesNames {
     Regist = '/regist',
     login = '/login',
     Change = '/change',
-    User = '/users/:id'
+    User = '/users/:id',
+    News = '/news'
 }
 
 
@@ -41,14 +42,13 @@ export const routes: IRoute[] = [
         element: Users
     },
     {
-        path: RoutesNames.Change,
-        element: Change
-    },
-    {
         path: RoutesNames.User,
         element: User
     },
-
+    {
+        path: RoutesNames.News,
+        element: News
+    }
 ]
 
 export const addRoutes: IRoute[] = [

@@ -2,6 +2,7 @@ import RegistBlock from "./ui/RegistBlock/RegistBlock";
 import AuthSlice, { LogOut } from './model/AuthSlice'
 import { changePicture, changeProfile, createProfile, getProfile, login } from "./actions/AuthAction";
 import LoginBlock from "./ui/LoginBlock/LoginBlock";
+import AuthApi from "./api/AuthApi";
 
 export {
     RegistBlock,
@@ -12,5 +13,6 @@ export {
     login,
     LogOut,
     changeProfile,
-    changePicture
+    changePicture,
+    AuthApi
 }

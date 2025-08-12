@@ -1,5 +1,5 @@
 import { instance } from "../../../App/AppApi"
-import type { IProfile, IResponseProfile } from "../model/types"
+import type { IProfile, IResponseGetIdName, IResponseProfile } from "../model/types"
 
 
 
@@ -34,11 +34,15 @@ const AuthApi = {
         if (avatar) {
             formData.append('avatar', avatar);
         }
-        if(background){
+        if (background) {
             formData.append('background', background)
         }
         const data = await instance.post<IProfile>('/auth/profilePicture', formData,
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'multipart/form-data' } })
+        return data.data
+    },
+    async getIdNameStatus(idName: string) {
+        const data = await instance.get<IResponseGetIdName>(`/auth/profileIdName?idName=${idName}`)
         return data.data
     }
 }

@@ -8,10 +8,14 @@ interface IProps {
     onChange: (value: string) => void
     placeholder: string
     type?: string
+    label?: string
 }
 
-const Input: FC<IProps> = ({ value, onChange, placeholder, type }) => {
-    return <input className={s.input} type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
+const Input: FC<IProps> = ({ value, onChange, placeholder, type, label }) => {
+    return <form className={s.Input}>
+        {label && <label className={s.Input__label}>{label}</label>}
+        <input className={s.Input__input} type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.currentTarget.value)} />
+    </form>
 
 }
 

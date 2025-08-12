@@ -1,0 +1,37 @@
+
+
+
+.Shadow {
+    background-color: black;
+    width: 100%;
+    top: 0px;
+    height: 100vh;
+    position: absolute;
+    opacity: 0.5;
+}
+
+.EditProfile {
+    position: absolute;
+    left: 35%;
+    top: 5%;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 200;
+    width: 600px;
+    height: 700px;
+    background-color: #fff;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {}
+
+    &__close {
+        width: 15px;
+        cursor: pointer;
+    }
+
+}

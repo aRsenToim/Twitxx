@@ -15,3 +15,8 @@ export interface IResponseProfile {
     token: string
     user: IProfile
 }
+
+
+export interface IResponseGetIdName{
+    status: boolean
+}

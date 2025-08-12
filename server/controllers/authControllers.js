@@ -194,6 +194,48 @@ class AuthController {
 
         }
     }
+    async changeIdName(req, res) {
+        try {
+            const id = req.user.id
+            const id_name = req.body.id_name
+            const userUpdate = await prisma.user.update({
+                where: {
+                    id
+                },
+                data: {
+                    id_name
+                }
+            })
+            await prisma.post.updateMany({
+                where: {
+                    userId: id,
+                },
+                data: {
+                    authorIdName: id_name
+                }
+            })
+            res.json(userUpdate)
+        } catch (error) {
+            res.send('server error')
+        }
+    }
+    async getIdName(req, res) {
+        try {
+            const id_name = req.query.idName
+            const user = await prisma.user.count({
+                where: {
+                    id_name: id_name
+                }
+            })
+            if (user != 0) {
+                return res.json({ status: false })
+            }
+            res.json({status: true})
+
+        } catch (error) {
+            res.send('server error')
+        }
+    }
 }
 
 

@@ -13,6 +13,7 @@ routesAuth.post("/login", authControllers.login)
 routesAuth.get('/getAuth', AuthMiddleware, authControllers.auth)
 routesAuth.patch('/profile', AuthMiddleware, authControllers.change)
 routesAuth.post('/profilePicture', AuthMiddleware, authControllers.changePicture)
-
+routesAuth.patch('/profileIdName', AuthMiddleware, authControllers.changeIdName)
+routesAuth.get('/profileIdName', authControllers.getIdName)
 
 export default routesAuth

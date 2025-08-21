@@ -1,5 +1,6 @@
 import { useState, type FC } from 'react'
 import s from './postBlock.module.scss'
+import { NavLink } from 'react-router-dom'
 
 interface IProps {
     title: string
@@ -8,16 +9,21 @@ interface IProps {
     authorName: string
     authorAvatar: string
     authorIdName: string
-
+    toAnswer: string
     isProfile: boolean
     toFix?: boolean
     pinPost?: () => void
     deletePost?: () => void
+    AnswerPost?: () => void
 }
 
-const PostBlock: FC<IProps> = ({ title, content, date, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
+const PostBlock: FC<IProps> = ({ title, content, toAnswer, date, AnswerPost, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
     const [isSettingBlog, setIsSettingBlock] = useState<boolean>()
     return <div className={s.PostBlock}>
+        {toAnswer && <NavLink to={`/post/${toAnswer}`} className={s.PostBlock__answer}>
+            <img src="/images/icons/answerPost.svg" alt="" />
+            <span>Answer</span>
+        </NavLink>}
         <div className={s.PostBlock__header}>
             <div className={s.PostBlock__autor}>
                 <img className={s.PostBlock__avatar} src={`http://localhost:3003/` + authorAvatar} alt="" />
@@ -47,9 +53,14 @@ const PostBlock: FC<IProps> = ({ title, content, date, isProfile, deletePost, au
                 {content}
             </p>
         </div>
-        <div className={s.PostBlock__footer}>
-
-        </div>
+        <ul className={s.PostBlock__footer}>
+            <li className={s.PostBlock__footerItem} onClick={AnswerPost}>
+                <img src="/images/icons/answer.svg" alt="" />
+            </li>
+            <li className={s.PostBlock__footerItem}>
+                <img src="/images/icons/like.svg" alt="" />
+            </li>
+        </ul>
     </div>
 }
 

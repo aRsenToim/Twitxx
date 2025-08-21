@@ -2,7 +2,7 @@ import { changePost, createPost, deletePost, getPosts, getUsersPosts } from "./a
 import postsSlice from "./model/postsSlice"
 import CreatePost from "./ui/CreatePost/CreatePost"
 import PostBlock from "./ui/PostBlock/postBlock"
-
+import {setToAnswer} from './model/postsSlice'
 
 
 export {
@@ -13,5 +13,6 @@ export {
     createPost,
     getUsersPosts,
     changePost,
-    deletePost
+    deletePost,
+    setToAnswer
 }

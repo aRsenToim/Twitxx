@@ -5,29 +5,35 @@ import Input from '../../../../widgets/ui/input/input'
 
 interface IProps {
     createPost: (title: string, content: string) => void
+    toAnswer: string
+    setToAnswer: () => void
 }
 
 
-const CreatePost: FC<IProps> = ({createPost}) => {
+const CreatePost: FC<IProps> = ({ createPost, toAnswer, setToAnswer }) => {
     const [content, setContent] = useState<string>("")
     const [title, setTitle] = useState<string>("")
     const [height, setHeight] = useState<number>(150)
     return <div className={s.CreatePost}>
+        {toAnswer && <div className={s.CreatePost__answer}>
+            <span>Answer to post</span>
+            <span onClick={setToAnswer}>X</span>
+        </div>}
         <div className={s.CreatePost__form}>
-            <Input value={title} onChange={(v) => {setTitle(v)}} placeholder='Title post'/>
-            <textarea className={s.CreatePost__input}  value={content} onChange={(e) => setContent(e.currentTarget.value)}
-            style={{
-                height: `${height}px`
-            }}
-            onFocus={() => {
-                setHeight(500)
-            }}
-            onBlur={() => {
-                if(content.length == 0){
-                    setHeight(150)
-                }
-            }}
-            placeholder='Create new tweet' />
+            <Input value={title} onChange={(v) => { setTitle(v) }} placeholder='Title post' />
+            <textarea className={s.CreatePost__input} value={content} onChange={(e) => setContent(e.currentTarget.value)}
+                style={{
+                    height: `${height}px`
+                }}
+                onFocus={() => {
+                    setHeight(500)
+                }}
+                onBlur={() => {
+                    if (content.length == 0) {
+                        setHeight(150)
+                    }
+                }}
+                placeholder='Create new tweet' />
         </div>
         <div className={s.CreatePost__footer}>
             <ul className={s.CreatePost__items}></ul>

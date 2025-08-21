@@ -29,6 +29,7 @@ model Post {
   authorName   String
   authorAvatar String
   authorIdName String
+  toAnswer     String
 
   User   User?   @relation(fields: [userId], references: [id])
   userId String?

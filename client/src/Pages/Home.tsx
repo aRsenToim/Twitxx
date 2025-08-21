@@ -1,11 +1,11 @@
 import { useEffect, type FC } from "react";
-import { createPost, CreatePost, getPosts, PostBlock } from "../entities/Posts";
+import { createPost, CreatePost, getPosts, PostBlock, setToAnswer, } from "../entities/Posts";
 import { useAppDispatch, useAppSelector } from "../App/AppStore";
 
 
 
 const Home: FC = () => {
-    const posts = useAppSelector(state => state.postsSlice.posts)
+    const { posts, toAnswer } = useAppSelector(state => state.postsSlice)
     const { profile, isAuth } = useAppSelector(state => state.AuthSlice)
     const dispatch = useAppDispatch()
     useEffect(() => {
@@ -14,12 +14,18 @@ const Home: FC = () => {
         }
     }, [])
 
-    return <div>    
+    return <div>
         <h1>Home</h1>
-        {profile ? <CreatePost createPost={(title: string, content: string) => { 
-            dispatch(createPost(title, content, profile?.id))
+        {profile ? <CreatePost toAnswer={toAnswer} setToAnswer={() => { dispatch(setToAnswer("")) }} createPost={(title: string, content: string) => {
+            if (toAnswer) {
+                dispatch(createPost(title, content, profile?.id, toAnswer))
+            }else {
+                dispatch(createPost(title, content, profile?.id))
+            }
         }} /> : undefined}
-        {posts?.map(post => <PostBlock isProfile={false} key={post.id} title={post.Title}
+        {posts?.map(post => <PostBlock toAnswer={post.toAnswer}
+            AnswerPost={() => { dispatch(setToAnswer(post.id)) }}
+            isProfile={false} key={post.id} title={post.Title}
             content={post.content} authorAvatar={post.authorAvatar} authorIdName={post.authorIdName} authorName={post.authorName}
             date={post.date}
         />)}

@@ -9,9 +9,9 @@ export const postsApi = {
         const data = await instance.get<IPost[]>('/posts')
         return data.data
     },
-    async createPost(title: string, content: string) {
+    async createPost(title: string, content: string, toAnswer?: string) {
         const data = await instance.post<IPost>('/posts',
-            { title, content },
+            { title, content, toAnswer },
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         )
         return data.data

@@ -28,7 +28,7 @@ class PostsControllers {
     async create(req, res) {
         try {
             const userId = req.user.id
-            const { title, content } = req.body
+            const { title, content, toAnswer } = req.body
             const user = await prisma.user.findUnique({
                 where: {
                     id: userId
@@ -42,6 +42,7 @@ class PostsControllers {
                     authorName: user.name,
                     authorAvatar: user.avatar,
                     authorIdName: user.id_name,
+                    toAnswer: toAnswer ? toAnswer : "",
                     toFix: false
                 }
             })

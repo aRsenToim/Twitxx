@@ -5,12 +5,14 @@ interface IinitialState {
     posts: null | IPost[]
     error: string
     postsUsers: null | IPost[]
+    toAnswer: string
 }
 
 const initialState: IinitialState = {
     posts: null,
     error: "",
-    postsUsers: null
+    postsUsers: null, 
+    toAnswer: ""
 }
 
 const postsSlice = createSlice({
@@ -36,9 +38,12 @@ const postsSlice = createSlice({
             })
             
             state.postsUsers = [...fixed, ...noFixed]
+        },
+        setToAnswer(state, action: PayloadAction<string>){
+            state.toAnswer = action.payload
         }
     }
 })
 
 export default postsSlice.reducer
-export const { setError, setPosts, setPostsUser } = postsSlice.actions
+export const { setError, setPosts, setPostsUser, setToAnswer } = postsSlice.actions

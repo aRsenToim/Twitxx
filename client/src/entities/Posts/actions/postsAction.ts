@@ -15,9 +15,9 @@ export function getPosts() {
     }
 }
 
-export function createPost(title: string, content: string, userId: string) {
+export function createPost(title: string, content: string, userId: string, toAnswer?: string) {
     return (dispatch: AppDispatch) => {
-        postsApi.createPost(title, content).then(() => {
+        postsApi.createPost(title, content, toAnswer).then(() => {
             dispatch(getPosts())
             dispatch(getUsersPosts(userId))
         })

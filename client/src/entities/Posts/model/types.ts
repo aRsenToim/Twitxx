@@ -11,4 +11,5 @@ export interface IPost {
     authorName: string
     authorAvatar: string
     authorIdName: string
+    toAnswer: string
 }

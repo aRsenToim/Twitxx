@@ -7,6 +7,11 @@
     border: 1px solid #d5d5d5;
     &__form{
     }
+    &__answer{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     &__avatar{
         width: 48px;
         height: 48px;

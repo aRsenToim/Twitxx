@@ -15,9 +15,12 @@ interface IProps {
     pinPost?: () => void
     deletePost?: () => void
     AnswerPost?: () => void
+    likePost: () => void
+    unlikePost: () => void
+    isLike: boolean
 }
 
-const PostBlock: FC<IProps> = ({ title, content, toAnswer, date, AnswerPost, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
+const PostBlock: FC<IProps> = ({ title, likePost, unlikePost, content, toAnswer, isLike, date, AnswerPost, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
     const [isSettingBlog, setIsSettingBlock] = useState<boolean>()
     return <div className={s.PostBlock}>
         {toAnswer && <NavLink to={`/post/${toAnswer}`} className={s.PostBlock__answer}>
@@ -57,9 +60,11 @@ const PostBlock: FC<IProps> = ({ title, content, toAnswer, date, AnswerPost, isP
             <li className={s.PostBlock__footerItem} onClick={AnswerPost}>
                 <img src="/images/icons/answer.svg" alt="" />
             </li>
-            <li className={s.PostBlock__footerItem}>
+            {isLike ? <li className={s.PostBlock__footerItem} onClick={unlikePost}>
+                <img src="/images/icons/toLike.svg" alt="" />
+            </li> : <li className={s.PostBlock__footerItem} onClick={likePost}>
                 <img src="/images/icons/like.svg" alt="" />
-            </li>
+            </li>}
         </ul>
     </div>
 }

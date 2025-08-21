@@ -1,18 +1,20 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { IPost } from "./types";
+import type { ILike, IPost } from "./types";
 
 interface IinitialState {
     posts: null | IPost[]
     error: string
     postsUsers: null | IPost[]
     toAnswer: string
+    likes: ILike[] | null
 }
 
 const initialState: IinitialState = {
     posts: null,
     error: "",
     postsUsers: null, 
-    toAnswer: ""
+    toAnswer: "",
+    likes: null
 }
 
 const postsSlice = createSlice({
@@ -41,9 +43,12 @@ const postsSlice = createSlice({
         },
         setToAnswer(state, action: PayloadAction<string>){
             state.toAnswer = action.payload
+        },
+        setLikes(state, action: PayloadAction<ILike[]>){
+            state.likes = action.payload
         }
     }
 })
 
 export default postsSlice.reducer
-export const { setError, setPosts, setPostsUser, setToAnswer } = postsSlice.actions
+export const { setError, setPosts, setPostsUser, setToAnswer, setLikes } = postsSlice.actions

@@ -9,6 +9,6 @@ const routesPosts = new Router()
 routesPosts.get('/', postsControllers.getPosts)
 routesPosts.post('/', AuthMiddleware, postsControllers.create)
 routesPosts.patch('/', postsControllers.changePost)
-routesPosts.delete('/', postsControllers.deletePost)
+routesPosts.delete('/', postsControllers.unLikePost)
 
 export default routesPosts

@@ -1,5 +1,5 @@
 import { instance } from "../../../App/AppApi"
-import type { IPost } from "../model/types"
+import type { ILike, IPost } from "../model/types"
 
 
 
@@ -31,6 +31,18 @@ export const postsApi = {
     },
     async deletePost(idPost: string) {
         const data = await instance.delete(`/posts?idPost=${idPost}`)
+        return data.data
+    },
+    async likePost(idPost: string) {
+        const data = await instance.post('/likes', { idPost }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        return data.data
+    },
+    async getLikes() {
+        const data = await instance.get<ILike[]>('/likes', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        return data.data
+    },
+    async unLike(idPost: string) {
+        const data = await instance.delete(`/likes?idPost=${idPost}`,)
         return data.data
     }
 }

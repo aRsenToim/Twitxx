@@ -2,7 +2,7 @@ import { useEffect, type FC } from "react";
 import { useAppDispatch, useAppSelector } from "../App/AppStore";
 import { AuthorizedProfile } from "../shared/hoc/authorizedProfile";
 import { ProfileHeader, ProfileID } from "../entities/profile";
-import { changePost, createPost, CreatePost, deletePost, getUsersPosts, PostBlock, setToAnswer } from "../entities/Posts";
+import { changePost, createPost, CreatePost, deletePost, getUsersPosts, likePost, PostBlock, setToAnswer, unlikePost } from "../entities/Posts";
 import { changeProfile, LogOut } from "../entities/Auth";
 import { setWindowEditProfile } from "../entities/Window";
 
@@ -11,7 +11,7 @@ import { setWindowEditProfile } from "../entities/Window";
 const Profile: FC = () => {
     const profile = useAppSelector(state => state.AuthSlice.profile)
     const dispatch = useAppDispatch()
-    const { postsUsers, toAnswer } = useAppSelector(state => state.postsSlice)
+    const { postsUsers, toAnswer, likes } = useAppSelector(state => state.postsSlice)
 
 
     useEffect(() => {
@@ -35,6 +35,9 @@ const Profile: FC = () => {
             }} /> : undefined}
             <h1>Your twitxxers: </h1>
             {postsUsers?.map(post => <PostBlock
+                unlikePost={() => dispatch(unlikePost(post.id, profile?.id ?? ""))}
+                likePost={() => { dispatch(likePost(post.id, profile?.id ?? "")) }}
+                isLike={likes ? Boolean(likes?.find(item => item.postId == post.id)) : false}
                 toAnswer={post.toAnswer}
                 AnswerPost={() => { }}
                 isProfile={true} pinPost={() => {

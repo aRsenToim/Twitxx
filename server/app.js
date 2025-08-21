@@ -5,6 +5,7 @@ import cors from 'cors'
 import fileUpload from 'express-fileupload'
 import routesPosts  from './routes/posts.js'
 import routesUsers from './routes/users.js'
+import routesLikes from './routes/likes.js'
 
 export const prisma = new PrismaClient()
 const app = express()
@@ -23,6 +24,7 @@ app.use(express.static('static'))
 app.use('/api/auth', routesAuth)
 app.use('/api/posts', routesPosts)
 app.use('/api/users', routesUsers)
+app.use('/api/likes', routesLikes)
 
 
 

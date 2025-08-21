@@ -15,7 +15,8 @@ class PostsControllers {
                 })
                 return res.json(UsersPosts)
             } else {
-                const posts = await prisma.post.findMany()
+                const posts = await prisma.post.findMany({
+                })
 
                 res.json(posts)
             }
@@ -82,6 +83,57 @@ class PostsControllers {
                 }
             })
             res.send('good')
+        } catch (error) {
+            res.send('server error')
+        }
+    }
+    async likePost(req, res){
+        try {
+            const userId = req.user.id
+            const {idPost} = req.body
+            
+            await prisma.like.create({
+                data: {
+                    userId,
+                    postId: idPost
+                }
+            })
+            
+            
+            res.json({})
+        } catch (error) {
+            console.log(error);
+            
+            res.send('server error')            
+        }
+    }
+    async unLikePost(req, res){
+        try {
+            const {idPost} = req.query
+            const like = await prisma.like.findFirst({
+                where: {
+                    postId: idPost
+                }
+            })
+            await prisma.like.delete({
+                where: {
+                    id: like.id
+                }
+            })            
+            res.json({})
+        } catch (error) {
+            res.send('server error')
+        }
+    }
+    async getLikes(req, res){
+        try {
+            const userId = req.user.id
+            const posts = await prisma.like.findMany({
+                where: {
+                    userId
+                }
+            })
+            res.json(posts)
         } catch (error) {
             res.send('server error')
         }

@@ -13,3 +13,9 @@ export interface IPost {
     authorIdName: string
     toAnswer: string
 }
+
+export interface ILike {
+    id: string
+    postId: string
+    userId: string
+}

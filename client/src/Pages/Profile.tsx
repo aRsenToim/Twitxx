@@ -5,6 +5,7 @@ import { ProfileHeader, ProfileID } from "../entities/profile";
 import { changePost, createPost, CreatePost, deletePost, getUsersPosts, likePost, PostBlock, setToAnswer, unlikePost } from "../entities/Posts";
 import { changeProfile, LogOut } from "../entities/Auth";
 import { setWindowEditProfile } from "../entities/Window";
+import { NoItems } from "../widgets/banners";
 
 
 
@@ -34,6 +35,7 @@ const Profile: FC = () => {
                 dispatch(createPost(title, content, profile?.id))
             }} /> : undefined}
             <h1>Your twitxxers: </h1>
+            {postsUsers && <NoItems/>}
             {postsUsers?.map(post => <PostBlock
                 unlikePost={() => dispatch(unlikePost(post.id, profile?.id ?? ""))}
                 likePost={() => { dispatch(likePost(post.id, profile?.id ?? "")) }}

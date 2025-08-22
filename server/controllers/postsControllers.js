@@ -7,6 +7,7 @@ class PostsControllers {
     async getPosts(req, res) {
         try {
             const userId = req.query.userId
+            const id = req.query.id
             if (userId) {
                 const UsersPosts = await prisma.post.findMany({
                     where: {
@@ -14,6 +15,13 @@ class PostsControllers {
                     }
                 })
                 return res.json(UsersPosts)
+            }else if(id){
+                const post = await prisma.post.findUnique({
+                    where: {
+                        id
+                    }
+                })
+                res.json(post)
             } else {
                 const posts = await prisma.post.findMany({
                 })
@@ -21,8 +29,6 @@ class PostsControllers {
                 res.json(posts)
             }
         } catch (error) {
-            console.log(error);
-
             res.send('Error server')
         }
     }
@@ -75,7 +81,7 @@ class PostsControllers {
         }
     }
     async deletePost(req, res) {
-        try {
+        // try {
             const idPost = req.query.idPost
             await prisma.post.delete({
                 where: {
@@ -83,9 +89,9 @@ class PostsControllers {
                 }
             })
             res.send('good')
-        } catch (error) {
-            res.send('server error')
-        }
+        // } catch (error) {
+        //     res.send('server error')
+        // }
     }
     async likePost(req, res){
         try {

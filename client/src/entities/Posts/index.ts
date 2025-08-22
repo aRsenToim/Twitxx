@@ -17,5 +17,5 @@ export {
     setToAnswer,
     likePost,
     getLikesFetch,
-    unlikePost
+    unlikePost,
 }

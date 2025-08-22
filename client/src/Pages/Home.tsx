@@ -1,6 +1,7 @@
 import { useEffect, type FC } from "react";
 import { createPost, CreatePost, getPosts, likePost, PostBlock, setToAnswer, unlikePost, } from "../entities/Posts";
 import { useAppDispatch, useAppSelector } from "../App/AppStore";
+import { NoItems } from "../widgets/banners";
 
 
 
@@ -23,6 +24,7 @@ const Home: FC = () => {
                 dispatch(createPost(title, content, profile?.id))
             }
         }} /> : undefined}
+        {posts && <NoItems/>}
         {posts?.map(post => <PostBlock
         unlikePost={() => dispatch(unlikePost(post.id, profile?.id ?? ""))}
         likePost={() => {dispatch(likePost(post.id, profile?.id ?? ""))}}

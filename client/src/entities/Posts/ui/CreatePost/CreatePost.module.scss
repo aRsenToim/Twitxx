@@ -10,7 +10,19 @@
     &__answer{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
+        background-color: #ccc;
+        cursor: pointer;
+        padding: 3px;
+        width: 125px;
+        border-radius: 10px;
+        img{
+            width: 18px;
+            margin-right: 4px;
+        }
+        span{
+            font-size: 15px;
+        }
     }
     &__avatar{
         width: 48px;
@@ -19,12 +31,18 @@
         border-radius: 200px;
     }
     &__input{
-        border: none;
-        outline: none;
-        margin-left: 10px;
-        font-size: 21px;
-        resize: none;
+        max-width: 100%;
         min-width: 100%;
+        display: block;
+        padding: 13px 16px 13px 20px;
+        outline: none;
+        border: 1px solid #ccc;
+        font-size: 15px;
+        font-weight: 500;
+        color: #000;
+        resize: none;
+        margin: 5px 0px;
+        border-radius: 11px;
     }
     &__footer{
         display: flex;

@@ -1,3 +1,10 @@
 .noItems{
-    
+    text-align: center;
+    margin: 10px 0px;
+    &__title{
+        margin: 0px 10px;
+    }
+    &__desc{
+        color: #ccc;
+    }
 }

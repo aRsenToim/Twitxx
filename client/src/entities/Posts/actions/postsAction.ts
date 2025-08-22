@@ -41,6 +41,7 @@ export function changePost(profileID: string, idPost: string, fix?: boolean) {
 }
 
 export function deletePost(profileId: string, idPost: string) {
+    
     return (dispatch: AppDispatch) => {
         postsApi.deletePost(idPost).then(() => {
             dispatch(getUsersPosts(profileId))

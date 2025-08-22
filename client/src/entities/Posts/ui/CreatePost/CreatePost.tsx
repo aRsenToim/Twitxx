@@ -15,9 +15,9 @@ const CreatePost: FC<IProps> = ({ createPost, toAnswer, setToAnswer }) => {
     const [title, setTitle] = useState<string>("")
     const [height, setHeight] = useState<number>(150)
     return <div className={s.CreatePost}>
-        {toAnswer && <div className={s.CreatePost__answer}>
-            <span>Answer to post</span>
-            <span onClick={setToAnswer}>X</span>
+        {toAnswer && <div className={s.CreatePost__answer} onClick={setToAnswer}>
+            <img src="/images/icons/answerPost.svg" alt="" />
+            <span>Answer post</span>
         </div>}
         <div className={s.CreatePost__form}>
             <Input value={title} onChange={(v) => { setTitle(v) }} placeholder='Title post' />

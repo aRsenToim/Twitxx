@@ -15,5 +15,5 @@ routesAuth.patch('/profile', AuthMiddleware, authControllers.change)
 routesAuth.post('/profilePicture', AuthMiddleware, authControllers.changePicture)
 routesAuth.patch('/profileIdName', AuthMiddleware, authControllers.changeIdName)
 routesAuth.get('/profileIdName', authControllers.getIdName)
-
+routesAuth.patch('/hideProfile', AuthMiddleware, authControllers.changeHideProfile)
 export default routesAuth

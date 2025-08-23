@@ -12,15 +12,17 @@ interface IProps {
     toAnswer: string
     isProfile: boolean
     toFix?: boolean
+    isGlobal?: boolean
     pinPost?: () => void
     deletePost?: () => void
     AnswerPost?: () => void
     likePost: () => void
     unlikePost: () => void
+    changeGlobal?: () => void
     isLike: boolean
 }
 
-const PostBlock: FC<IProps> = ({ title, likePost, unlikePost, content, toAnswer, isLike, date, AnswerPost, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
+const PostBlock: FC<IProps> = ({ title, likePost, isGlobal, changeGlobal, unlikePost, content, toAnswer, isLike, date, AnswerPost, isProfile, deletePost, authorAvatar, toFix, pinPost, authorName, authorIdName }) => {
     const [isSettingBlog, setIsSettingBlock] = useState<boolean>()
     return <div className={s.PostBlock}>
         {toAnswer && <NavLink to={`/post/${toAnswer}`} className={s.PostBlock__answer}>
@@ -46,6 +48,15 @@ const PostBlock: FC<IProps> = ({ title, likePost, unlikePost, content, toAnswer,
                     <li className={s.SettingsPostBlock__item} onClick={deletePost}>
                         <img src="/images/icons/trash.svg" alt="" />
                         <span>Delete post</span>
+                    </li>
+                    <li className={s.SettingsPostBlock__item} onClick={changeGlobal}>
+                        {isGlobal ? <>
+                            <img src="/images/icons/hide.svg" alt="" />
+                            <span>Hide</span>
+                        </> : <>
+                            <img src="/images/icons/unhide.svg" alt="" />
+                            <span>Open</span>
+                        </>}
                     </li>
                 </ul>}
             </div>}

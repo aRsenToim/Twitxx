@@ -1,5 +1,6 @@
 import type { AppDispatch } from "../../../App/AppStore"
 import { getPosts, getUsersPosts } from "../../Posts"
+import { getUserItemsFetch } from "../../Users"
 import AuthApi from "../api/AuthApi"
 import { setProfile } from "../model/AuthSlice"
 
@@ -66,6 +67,15 @@ export const changeIdNameFetch = (idName: string, userId: string) => {
             dispatch(setProfile(data))
             dispatch(getPosts())
             dispatch(getUsersPosts(userId))
+        })
+    }
+}
+
+export const changeHideProfile = (isHide: boolean) => {
+    return (dispatch: AppDispatch) => {
+        AuthApi.changeHide(isHide).then((data) => {
+            dispatch(setProfile(data))
+            dispatch(getUserItemsFetch())
         })
     }
 }

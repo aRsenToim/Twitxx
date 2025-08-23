@@ -35,6 +35,7 @@ class AuthController {
                     name,
                     desc: "Desc",
                     background: "baseBG.jpg",
+                    isHide: false
                 }
             })
             let user = await prisma.user.findMany({
@@ -112,7 +113,8 @@ class AuthController {
                     avatar: user.avatar,
                     desc: user.desc,
                     id_name: user.id_name,
-                    background: user.background
+                    background: user.background,
+                    isHide: user.isHide
                 }
             })
         } catch (error) {
@@ -236,6 +238,24 @@ class AuthController {
 
         } catch (error) {
             res.send('server error')
+        }
+    }
+    async changeHideProfile(req, res){
+        try {
+            const id = req.user.id
+            const isHide = req.body.isHide 
+
+            const user = await prisma.user.update({
+                where: {
+                    id
+                },
+                data: {
+                    isHide
+                }
+            })
+            res.json(user)
+        } catch (error) {
+            res.send('server error')   
         }
     }
 }

@@ -9,6 +9,7 @@ export interface IProfile {
     desc: string,
     background: string
     id_name: string,
+    isHide: boolean
 }
 
 export interface IResponseProfile {

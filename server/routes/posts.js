@@ -11,4 +11,6 @@ routesPosts.post('/', AuthMiddleware, postsControllers.create)
 routesPosts.patch('/', postsControllers.changePost)
 routesPosts.delete('/', postsControllers.deletePost)
 
+routesPosts.patch('/global', AuthMiddleware, postsControllers.setGlobalPost)
+
 export default routesPosts

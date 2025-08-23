@@ -75,3 +75,12 @@ export function unlikePost(idPost: string, userId: string){
         })
     }
 }
+
+export function changeGlobal(idProfile: string, idpost: string, global: boolean){
+    return (dispatch: AppDispatch) => {
+        postsApi.changeGlobalPost(idpost, global).then(() => {
+            dispatch(getPosts())
+            dispatch(getUsersPosts(idProfile))
+        })
+    }
+} 

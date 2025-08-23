@@ -44,5 +44,9 @@ export const postsApi = {
     async unLike(idPost: string) {
         const data = await instance.delete(`/likes?idPost=${idPost}`,)
         return data.data
+    },
+    async changeGlobalPost(idpost: string, global: boolean) {
+        const data = await instance.patch('/posts/global', { idpost, global }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        return data.data
     }
 }

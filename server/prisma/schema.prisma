@@ -16,6 +16,7 @@ model User {
   avatar     String
   desc       String
   background String
+  isHide     Boolean
 
   Post Post[]
   likes Like[]
@@ -31,6 +32,7 @@ model Post {
   authorAvatar String
   authorIdName String
   toAnswer     String
+  isGlobal     Boolean
 
   User   User?   @relation(fields: [userId], references: [id])
   userId String?

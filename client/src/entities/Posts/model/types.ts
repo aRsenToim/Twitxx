@@ -6,6 +6,7 @@ export interface IPost {
     Title: string
     content: string
     date: Date
+    isGlobal: boolean
     userId: string
     toFix: boolean
     authorName: string

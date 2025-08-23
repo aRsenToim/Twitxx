@@ -51,6 +51,11 @@ const AuthApi = {
             { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
         )
         return data.data
+    },
+    async changeHide(isHide: boolean) {
+        const data = await instance.patch<IProfile>('/auth/hideProfile', { isHide },
+            { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+        return data.data
     }
 }
 

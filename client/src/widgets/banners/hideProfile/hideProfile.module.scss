@@ -1,0 +1,14 @@
+.HideProfile{
+    text-align: center;
+    margin: 10px 0px;
+    &__image{
+        width: 200px;
+    }
+    &__title{
+        margin: 10px 0px;
+        font-size: 40px;
+    }
+    &__desc{
+        color: #ccc;
+    }
+}

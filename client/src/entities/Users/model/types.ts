@@ -7,6 +7,7 @@ export interface IUser {
     email: string,
     avatar: string,
     desc: string,
+    isHide: boolean
     background: string
 }
 

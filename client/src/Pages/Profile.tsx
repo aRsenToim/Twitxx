@@ -2,8 +2,8 @@ import { useEffect, type FC } from "react";
 import { useAppDispatch, useAppSelector } from "../App/AppStore";
 import { AuthorizedProfile } from "../shared/hoc/authorizedProfile";
 import { ProfileHeader, ProfileID } from "../entities/profile";
-import { changePost, createPost, CreatePost, deletePost, getUsersPosts, likePost, PostBlock, setToAnswer, unlikePost } from "../entities/Posts";
-import { changeProfile, LogOut } from "../entities/Auth";
+import { changeGlobal, changePost, createPost, CreatePost, deletePost, getUsersPosts, likePost, PostBlock, setToAnswer, unlikePost } from "../entities/Posts";
+import { changeHideProfile, changeProfile, LogOut } from "../entities/Auth";
 import { setWindowEditProfile } from "../entities/Window";
 import { NoItems } from "../widgets/banners";
 
@@ -27,7 +27,16 @@ const Profile: FC = () => {
     return <AuthorizedProfile>
         <div>
             {profile && <ProfileID id={profile.id_name} />}
-            {profile && <ProfileHeader isProfile
+            {profile && <ProfileHeader 
+            isHide={profile.isHide}
+            Hide={() => {
+                if(profile.isHide){
+                    dispatch(changeHideProfile(false))
+                    return
+                }
+                dispatch(changeHideProfile(true))
+            }}
+            isProfile
                 logout={() => { dispatch(LogOut()) }} editProfileWindow={() => dispatch(setWindowEditProfile())}
                 setDesc={(desc: string) => { dispatch(changeProfile(profile.id, profile.name, desc)) }}
                 name={profile?.name} avatar={profile.avatar} background={profile.background} desc={profile.desc} id={profile.id} />}
@@ -35,8 +44,16 @@ const Profile: FC = () => {
                 dispatch(createPost(title, content, profile?.id))
             }} /> : undefined}
             <h1>Your twitxxers: </h1>
-            {postsUsers && <NoItems/>}
+            {postsUsers?.length ? undefined : <NoItems />}
             {postsUsers?.map(post => <PostBlock
+                isGlobal={post.isGlobal}
+                changeGlobal={() => {
+                    if (post.isGlobal) {
+                        dispatch(changeGlobal(profile?.id ?? "", post.id, false))
+                        return
+                    }
+                    dispatch(changeGlobal(profile?.id ?? "", post.id, true))
+                }}
                 unlikePost={() => dispatch(unlikePost(post.id, profile?.id ?? ""))}
                 likePost={() => { dispatch(likePost(post.id, profile?.id ?? "")) }}
                 isLike={likes ? Boolean(likes?.find(item => item.postId == post.id)) : false}

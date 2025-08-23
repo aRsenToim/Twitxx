@@ -15,7 +15,7 @@ class PostsControllers {
                     }
                 })
                 return res.json(UsersPosts)
-            }else if(id){
+            } else if (id) {
                 const post = await prisma.post.findUnique({
                     where: {
                         id
@@ -24,6 +24,9 @@ class PostsControllers {
                 res.json(post)
             } else {
                 const posts = await prisma.post.findMany({
+                    where: {
+                        isGlobal: true
+                    }
                 })
 
                 res.json(posts)
@@ -50,7 +53,8 @@ class PostsControllers {
                     authorAvatar: user.avatar,
                     authorIdName: user.id_name,
                     toAnswer: toAnswer ? toAnswer : "",
-                    toFix: false
+                    toFix: false,
+                    isGlobal: true,
                 }
             })
             res.json(post)
@@ -82,40 +86,40 @@ class PostsControllers {
     }
     async deletePost(req, res) {
         // try {
-            const idPost = req.query.idPost
-            await prisma.post.delete({
-                where: {
-                    id: idPost
-                }
-            })
-            res.send('good')
+        const idPost = req.query.idPost
+        await prisma.post.delete({
+            where: {
+                id: idPost
+            }
+        })
+        res.send('good')
         // } catch (error) {
         //     res.send('server error')
         // }
     }
-    async likePost(req, res){
+    async likePost(req, res) {
         try {
             const userId = req.user.id
-            const {idPost} = req.body
-            
+            const { idPost } = req.body
+
             await prisma.like.create({
                 data: {
                     userId,
                     postId: idPost
                 }
             })
-            
-            
+
+
             res.json({})
         } catch (error) {
             console.log(error);
-            
-            res.send('server error')            
+
+            res.send('server error')
         }
     }
-    async unLikePost(req, res){
+    async unLikePost(req, res) {
         try {
-            const {idPost} = req.query
+            const { idPost } = req.query
             const like = await prisma.like.findFirst({
                 where: {
                     postId: idPost
@@ -125,13 +129,13 @@ class PostsControllers {
                 where: {
                     id: like.id
                 }
-            })            
+            })
             res.json({})
         } catch (error) {
             res.send('server error')
         }
     }
-    async getLikes(req, res){
+    async getLikes(req, res) {
         try {
             const userId = req.user.id
             const posts = await prisma.like.findMany({
@@ -140,6 +144,22 @@ class PostsControllers {
                 }
             })
             res.json(posts)
+        } catch (error) {
+            res.send('server error')
+        }
+    }
+    async setGlobalPost(req, res) {
+        try {
+            const { idpost, global } = req.body
+            const post = await prisma.post.update({
+                where: {
+                    id: idpost
+                },
+                data: {
+                    isGlobal: global
+                }
+            })
+            res.json(post)
         } catch (error) {
             res.send('server error')
         }

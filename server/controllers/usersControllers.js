@@ -28,6 +28,9 @@ class UsersControllers {
             }
 
             const users = await prisma.user.findMany({
+                where: {
+                    isHide: false
+                },
                 select: {
                     id: true,
                     name: true,

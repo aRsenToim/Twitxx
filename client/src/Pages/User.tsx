@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../App/AppStore"
-import { useEffect } from "react"
+import { useEffect, useReducer } from "react"
 import { getUserFetch } from "../entities/Users"
 import { ProfileHeader, ProfileID } from "../entities/profile"
 import { getUsersPosts, likePost, PostBlock, unlikePost } from "../entities/Posts"
@@ -28,6 +28,9 @@ const User = () => {
     return <div>
         {User && <ProfileID id={User.id_name} />}
         {User && <ProfileHeader isProfile={false}
+            Location={User.Location}
+            profession={User.profession}
+            dateCreate={User.dateCreate}
             Hide={() => { }}
             setDesc={() => { }} logout={() => { }} editProfileWindow={() => { }}
             name={User?.name} avatar={User.avatar} background={User.background} desc={User.desc} id={User.id} />}

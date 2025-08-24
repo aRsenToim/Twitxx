@@ -30,6 +30,8 @@ class AuthController {
                 data: {
                     email,
                     password: hashPassword,
+                    Location: "Russia, Moscow",
+                    profession: "Marginal",
                     id_name: v4(),
                     avatar: "baaseAva.png",
                     name,
@@ -54,7 +56,10 @@ class AuthController {
                     id_name: user.id_name,
                     avatar: user.avatar,
                     desc: user.desc,
-                    background: user.background
+                    background: user.background,
+                    Location: user.Location,
+                    profession: user.profession,
+                    dateCreate: user.dateCreate
                 }
             })
         } catch (error) {
@@ -114,7 +119,10 @@ class AuthController {
                     desc: user.desc,
                     id_name: user.id_name,
                     background: user.background,
-                    isHide: user.isHide
+                    isHide: user.isHide,
+                    Location: user.Location,
+                    profession: user.profession,
+                    dateCreate: user.dateCreate
                 }
             })
         } catch (error) {
@@ -125,7 +133,7 @@ class AuthController {
     async change(req, res) {
         try {
             const userId = req.user.id
-            const { desc, userName, id_name } = req.body
+            const { desc, userName, id_name, Location, profession } = req.body
 
             const user = await prisma.user.findUnique({
                 where: {
@@ -139,7 +147,9 @@ class AuthController {
                 data: {
                     desc: desc ?? user.desc,
                     name: userName ?? user.name,
-                    id_name: id_name
+                    id_name: id_name,
+                    Location: Location ?? user.Location,
+                    profession: profession ?? user.profession
                 }
             })
             await prisma.post.updateMany({

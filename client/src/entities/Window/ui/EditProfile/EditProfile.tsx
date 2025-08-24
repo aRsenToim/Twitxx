@@ -12,8 +12,12 @@ const EditProfile: FC = () => {
     const profile = useAppSelector(state => state.AuthSlice.profile)
     const [name, setName] = useState<string>(profile?.name ?? "Xuisos")
     const [IdName, setIdName] = useState<string>("")
+
     const [avatar, setAvatar] = useState<File>()
     const [background, setBackground] = useState<File>()
+
+    const [profession, setProfession] = useState<string>(profile?.profession ?? "Xuisos")
+    const [Location, setLocation] = useState<string>(profile?.Location ?? "Xuisos")
     const dispatch = useAppDispatch()
     const [statusIdName, setStatusIdName] = useState<boolean>(true)
 
@@ -29,9 +33,12 @@ const EditProfile: FC = () => {
                 <ImageEdit title='Change Background' onchange={(v: File) => setBackground(v)} />
                 <ImageEdit title='Change Avatar' onchange={(v: File) => setAvatar(v)} />
                 <Input label='Change your name' value={name} onChange={(v: string) => setName(v)} placeholder='Your name' />
+                <Input label='Change your location' value={Location} onChange={(v: string) => setLocation(v)} placeholder='Your location' />
+                <Input label='Change your profession' value={profession} onChange={(v: string) => setProfession(v)} placeholder='Your profession' />
+
                 <Button title='Change' onclick={() => {
-                    if (name != profile?.name) {
-                        dispatch(changeProfile(profile?.id ?? "", name))
+                    if (name != profile?.name || Location != profile.Location || profession != profile.profession) {
+                        dispatch(changeProfile(profile?.id ?? "", name, profile?.desc, Location, profession))
                     }
                     if (avatar || background) {
                         dispatch(changePicture(profile?.id ?? "", avatar, background))

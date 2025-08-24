@@ -2,6 +2,7 @@
     width: 100%;
     text-align: center;
     margin: 0px auto;
+
     &__background {
         width: 100%;
         height: 200px;
@@ -20,9 +21,24 @@
         margin-top: 50px;
         padding: 10px;
     }
-    &__buttons{
+
+    &__buttons {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &__items {
+        text-align: start;
+        margin: 10px 0px;
+    }
+
+    &__item {
+        list-style: none;
+        margin: 8px 0px;
+
+        b {
+            font-weight: 800;
+        }
     }
 }

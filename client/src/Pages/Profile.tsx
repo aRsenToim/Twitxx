@@ -27,16 +27,19 @@ const Profile: FC = () => {
     return <AuthorizedProfile>
         <div>
             {profile && <ProfileID id={profile.id_name} />}
-            {profile && <ProfileHeader 
-            isHide={profile.isHide}
-            Hide={() => {
-                if(profile.isHide){
-                    dispatch(changeHideProfile(false))
-                    return
-                }
-                dispatch(changeHideProfile(true))
-            }}
-            isProfile
+            {profile && <ProfileHeader
+                Location={profile.Location}
+                profession={profile.profession}
+                dateCreate={profile.dateCreate}
+                isHide={profile.isHide}
+                Hide={() => {
+                    if (profile.isHide) {
+                        dispatch(changeHideProfile(false))
+                        return
+                    }
+                    dispatch(changeHideProfile(true))
+                }}
+                isProfile
                 logout={() => { dispatch(LogOut()) }} editProfileWindow={() => dispatch(setWindowEditProfile())}
                 setDesc={(desc: string) => { dispatch(changeProfile(profile.id, profile.name, desc)) }}
                 name={profile?.name} avatar={profile.avatar} background={profile.background} desc={profile.desc} id={profile.id} />}

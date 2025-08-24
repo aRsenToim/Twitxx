@@ -9,6 +9,9 @@ datasource db {
 
 model User {
   id         String @id @default(uuid())
+  dateCreate DateTime   @default(now()) 
+  profession String
+  Location   String
   id_name    String
   name       String
   email      String

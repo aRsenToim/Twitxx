@@ -39,10 +39,10 @@ export const login = (email: string, password: string) => {
     }
 }
 
-export const changeProfile = (userId: string, userName?: string, desc?: string,) => {
+export const changeProfile = (userId: string, userName?: string, desc?: string, Location?: string, profession?: string) => {
     return (dispatch: AppDispatch) => {
 
-        AuthApi.change(userName, desc).then(data => {
+        AuthApi.change(userName, desc, Location, profession).then(data => {
             dispatch(setProfile(data))
             dispatch(getUsersPosts(userId))
             dispatch(getPosts())

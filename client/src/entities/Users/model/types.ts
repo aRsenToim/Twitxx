@@ -2,13 +2,16 @@
 
 export interface IUser {
     id: string,
-    id_name: string,
-    name: string,
     email: string,
+    name: string,
     avatar: string,
     desc: string,
-    isHide: boolean
     background: string
+    id_name: string,
+    isHide: boolean,
+    Location: string,
+    profession: string,
+    dateCreate: Date
 }
 
 export interface IUserItem {

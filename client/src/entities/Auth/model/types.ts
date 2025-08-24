@@ -9,7 +9,10 @@ export interface IProfile {
     desc: string,
     background: string
     id_name: string,
-    isHide: boolean
+    isHide: boolean,
+    Location: string,
+    profession: string,
+    dateCreate: Date
 }
 
 export interface IResponseProfile {
@@ -18,6 +21,6 @@ export interface IResponseProfile {
 }
 
 
-export interface IResponseGetIdName{
+export interface IResponseGetIdName {
     status: boolean
 }

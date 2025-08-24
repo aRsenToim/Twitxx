@@ -22,10 +22,12 @@ const AuthApi = {
         const data = await instance.post<IResponseProfile>('/auth/login', { email, password })
         return data.data
     },
-    async change(userName?: string, desc?: string,) {
+    async change(userName?: string, desc?: string, Location?: string, profession?: string) {
         const data = await instance.patch<IProfile>('/auth/profile', {
             userName,
             desc,
+            Location,
+            profession
         }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, } })
         return data.data
     },
